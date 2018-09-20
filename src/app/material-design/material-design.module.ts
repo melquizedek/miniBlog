@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbarModule, MatButtonModule, MatProgressSpinnerModule} from '@angular/material';
 
 @NgModule({
   imports: [
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   exports:[
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   declarations: []
 })

@@ -1,0 +1,13 @@
+<angular-loader [show]="showLoader"></angular-loader>
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="postId" [formControl]="postId">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Title" [formControl]="title">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput placeholder="Body" [formControl]="body"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="updatePost()">Update</button>
+</div>

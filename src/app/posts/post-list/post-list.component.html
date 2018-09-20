@@ -1,0 +1,6 @@
+<angular-loader [show]="showLoader"></angular-loader>
+<mat-nav-list>
+  <mat-list-item *ngFor="let post of posts">
+    <a routerLink="/posts/details/{{post.id}}" matLine>{{post.title}}</a>
+  </mat-list-item>
+</mat-nav-list>
