@@ -1,0 +1,18 @@
+<angular-loader [show]="showLoader"></angular-loader>
+<h2 mat-dialog-title>Add Article</h2>
+<mat-dialog-content>
+    <form [formGroup]="postFormGroup">
+        <div class="add-post-form">
+            <mat-form-field>
+            <input matInput placeholder="Title" formControlName="title">
+            </mat-form-field>
+            <mat-form-field class="body">
+            <textarea matInput placeholder="Body" formControlName="body"></textarea>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="addPost()">Post</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</mat-dialog-actions>

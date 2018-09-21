@@ -1,8 +1,13 @@
 .example-container {
     display: flex;
     flex-direction: column;
-  }
+    padding: 10px;
+}
   
-  .example-container > * {
+.example-container > * {
     width: 100%;
-  }
+}
+
+.example-container .body textarea {
+    height: 96px;
+}

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { PostsRoutingModule } from './posts-routing.module';
 
-import {MatListModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
+import {MatListModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatProgressSpinnerModule, MatIconModule, MatDialogModule } from '@angular/material';
 
 import { PostListComponent } from './post-list/post-list.component';
 import { PostsComponent } from './posts.component';
@@ -13,6 +13,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoaderService } from '../components/loader/loader.service';
 import { LoaderComponent } from '../components/loader/loader.component';
+import { PostAddComponent, PostAddDialogComponent } from './post-add/post-add.component';
 
 @NgModule({
   imports: [
@@ -24,16 +25,21 @@ import { LoaderComponent } from '../components/loader/loader.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatDialogModule
   ],
   exports: [
     MatListModule, 
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [PostService, LoaderService],
-  declarations: [LoaderComponent, PostsComponent, PostListComponent, PostDetailsComponent]
+  declarations: [LoaderComponent, PostsComponent, PostListComponent, PostDetailsComponent, PostAddComponent, PostAddDialogComponent],
+  entryComponents: [PostAddDialogComponent]
 })
 export class PostsModule { }

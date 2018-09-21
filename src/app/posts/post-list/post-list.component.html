@@ -1,6 +1,9 @@
 <angular-loader [show]="showLoader"></angular-loader>
 <mat-nav-list>
-  <mat-list-item *ngFor="let post of posts">
-    <a routerLink="/posts/details/{{post.id}}" matLine>{{post.title}}</a>
-  </mat-list-item>
+    <a *ngFor="let post of posts" routerLink="/posts/details/{{post.id}}">
+      <mat-list-item>
+        {{post.title}}
+      </mat-list-item>
+    </a>
 </mat-nav-list>
+<post-add (afterSaved)="addedPost($event)"></post-add>

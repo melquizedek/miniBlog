@@ -1,11 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar color="primary">
-    <button mat-raised-button (click)="backClicked()">Back</button>
+    <button mat-raised-button (click)="backClicked()">
+        <mat-icon class="material-icons md-24">arrow_back</mat-icon>
+    </button>
   <span class="title">{{title}}</span>
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <!-- <span>Right Aligned Text</span> -->
+  <!-- <span>Right Aligned Text</span> --> 
 </mat-toolbar>
+
 <router-outlet></router-outlet>
