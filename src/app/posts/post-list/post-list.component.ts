@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
+import { Post } from '../../models/post';
 
 @Component({
   selector: 'app-post-list',
@@ -8,22 +9,32 @@ import { PostService } from '../../services/post.service';
 })
 export class PostListComponent implements OnInit {
 
-  posts: Object[] = null;
+  posts: Post[] = null;
   showLoader: boolean = true;
 
   constructor(private postService: PostService) { }
 
   ngOnInit() {
-    this.postService.getPost().subscribe((resp: Object[]) => { 
-      this.posts = resp;
-      this.showLoader = false; 
-    });
+    
+    if (localStorage.getItem('posts')) {
+      //console.log('from localStorage');
+      this.posts = JSON.parse(localStorage.getItem('posts'));
+    } else {
+      this.postService.getPost().subscribe((resp: Post[]) => { 
+        this.posts = resp;
+        localStorage.setItem('posts', JSON.stringify(resp));
+      });
+      //console.log('from ajax');
+    }
+
+    this.showLoader = false;
   }
 
   addedPost(event) {
-    event.id = this.posts.length + 1;
+    //event.id = this.posts.length + 1;
     console.log('addedPost', event);
-    this.posts.push(event);
+    this.posts.unshift(event);
+    localStorage.setItem('posts', JSON.stringify(this.posts));
   }
-
+  
 }

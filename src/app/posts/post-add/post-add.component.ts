@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
+import { post } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'post-add',
@@ -18,18 +19,15 @@ export class PostAddComponent {
     private router: Router) {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(PostAddDialogComponent, {
-      width: '500px',
-      height: '400px'
-    });
-
-    dialogRef.afterClosed().subscribe((result: Post) => {
-      console.log('close result = ', result);
-      if (result) {
-        this.afterSaved.emit(result);
-        this.router.navigate(['posts/list']);
-      }
-    });
+      const dialogRef = this.dialog.open(PostAddDialogComponent, {
+        width: '500px',
+        height: '400px'
+      });
+      
+      dialogRef.afterClosed().subscribe((result: Post) => {
+        result.id = Date.now();
+        this.afterSaved.next(result);
+      });
   }
 
 }
@@ -60,9 +58,11 @@ export class PostAddDialogComponent {
   addPost() : void {
     this.showLoader = true;
     this.postService.addPost(this.postFormGroup.value)
-        .subscribe((resp: Post) => {
+        .subscribe((resp: Post) => {//console.log('addedpost', resp);
+            
             this.showLoader = false;
             this.dialogRef.close(resp);
+
           });
   }
 
