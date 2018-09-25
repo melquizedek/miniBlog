@@ -4,7 +4,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Post } from '../../models/post';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
-import { post } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'post-add',
@@ -25,12 +24,17 @@ export class PostAddComponent {
       });
       
       dialogRef.afterClosed().subscribe((result: Post) => {
-        result.id = Date.now();
-        this.afterSaved.next(result);
+        if (result) {
+          result.id = Date.now();
+          this.afterSaved.next(result);
+        }
       });
   }
 
 }
+
+
+
 
 @Component({
   selector: 'post-add-dialog',
@@ -59,10 +63,11 @@ export class PostAddDialogComponent {
     this.showLoader = true;
     this.postService.addPost(this.postFormGroup.value)
         .subscribe((resp: Post) => {//console.log('addedpost', resp);
-            
             this.showLoader = false;
             this.dialogRef.close(resp);
-
+          }, err => {
+            this.showLoader = false;
+            this.dialogRef.close(this.postFormGroup.value);
           });
   }
 

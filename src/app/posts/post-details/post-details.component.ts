@@ -88,9 +88,9 @@ export class PostDetailsComponent implements OnInit {
             this.router.navigate(['posts/list']);
           }, err => {
             console.log('API response error: ', data);
-            if (err.status === 404) {
+            //if (err.status === 404) {
               this.doUpdate(this.postId, data);
-            }
+            //}
             this.showLoader = false;
             this.router.navigate(['posts/list']);
           });
